@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 interface PickTimeProps {
   selectedTime: string;
   onTimeSelect: (time: string) => void;

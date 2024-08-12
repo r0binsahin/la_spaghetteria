@@ -7,6 +7,7 @@ import { useState } from 'react';
 export default function Home() {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState('');
+  const [amount, setAmount] = useState(1);
 
   const handleTimeSelect = (time: string) => {
     setTime(time);
@@ -19,6 +20,7 @@ export default function Home() {
         onTimeSelect={handleTimeSelect}
         selectedTime={time}
       />
+      <Components.GuestAmount amount={amount} setAmount={setAmount} />
     </main>
   );
 }

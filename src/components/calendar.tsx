@@ -22,6 +22,7 @@ export const Calendar = ({ date, setDate }: CalendarProps) => {
         value={date}
         locale='sv-SE'
       />
+      <p>Selected Date: {date.toDateString()}</p>
     </>
   );
 };
