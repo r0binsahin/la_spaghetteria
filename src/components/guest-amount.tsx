@@ -31,8 +31,8 @@ export const GuestAmount = ({ amount, setAmount }: GuestAmountProps) => {
         value={amount}
         onChange={(e) => setAmount(+e.target.value)}
       >
-        {amountAlternatives.map((option) => (
-          <option key={option.value} value={option.value}>
+        {amountAlternatives.map((option, index) => (
+          <option key={index} value={option.value}>
             {option.label}
           </option>
         ))}
