@@ -1,4 +1,4 @@
-import { Guest } from './Guest';
+import { Guest } from './guest';
 
 export type Booking = {
   date: string;

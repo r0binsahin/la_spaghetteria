@@ -2,7 +2,7 @@
 
 import styles from './page.module.css';
 import * as Components from '../components/index';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Guest } from '@/types/guest';
 import { Booking } from '@/types/booking';
 
