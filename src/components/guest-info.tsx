@@ -1,4 +1,8 @@
-import { Guest } from '@/types/guest';
+export type Guest = {
+  fullname: string;
+  email: string;
+  phone: string;
+};
 
 interface GuestInfoProps {
   guest: Guest;
