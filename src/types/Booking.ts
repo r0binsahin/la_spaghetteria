@@ -1,4 +1,8 @@
-import { Guest } from './guest';
+export type Guest = {
+  fullname: string;
+  email: string;
+  phone: string;
+};
 
 export type Booking = {
   date: string;
