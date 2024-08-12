@@ -3,19 +3,8 @@
 import styles from './page.module.css';
 import * as Components from '../components/index';
 import { useState } from 'react';
-
-type Guest = {
-  fullname: string;
-  email: string;
-  phone: string;
-};
-
-export type Booking = {
-  date: string;
-  time: string;
-  amount: number;
-  guest: Guest;
-};
+import { Booking } from '@/types/booking';
+import { Guest } from '@/types/guest';
 
 const bookings: Booking[] = [];
 
