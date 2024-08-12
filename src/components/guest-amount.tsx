@@ -19,10 +19,6 @@ export const GuestAmount = ({ amount, setAmount }: GuestAmountProps) => {
     { value: 12, label: '12 persons (Max)' },
   ];
 
-  const options = amountAlternatives.map((amount) => (
-    <option value={amount.value}>{amount.label}</option>
-  ));
-
   return (
     <>
       <label htmlFor='guestAmount'>Select Amount of Guests: </label>
