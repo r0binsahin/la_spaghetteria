@@ -6,10 +6,19 @@ import { useState } from 'react';
 
 export default function Home() {
   const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState('');
+
+  const handleTimeSelect = (time: string) => {
+    setTime(time);
+  };
 
   return (
     <main className={styles.main}>
       <Components.Calendar date={date} setDate={setDate} />
+      <Components.PickTime
+        onTimeSelect={handleTimeSelect}
+        selectedTime={time}
+      />
     </main>
   );
 }
