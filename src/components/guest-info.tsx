@@ -1,13 +1,13 @@
-import { Guest } from '../types/guest';
+import { Booking } from '@/types/booking';
 
 interface GuestInfoProps {
-  guest: Guest;
+  booking: Booking;
   setGuestName: (name: string) => void;
   setGuestEmail: (email: string) => void;
   setGuestPhone: (phone: string) => void;
 }
 export const GuestInfo = ({
-  guest,
+  booking,
   setGuestName,
   setGuestEmail,
   setGuestPhone,
@@ -19,7 +19,7 @@ export const GuestInfo = ({
         <input
           type='text'
           id='fullName'
-          value={guest.fullname}
+          value={booking.fullname}
           onChange={(e) => setGuestName(e.target.value)}
           placeholder='Enter your full name'
         />
@@ -29,7 +29,7 @@ export const GuestInfo = ({
         <input
           type='email'
           id='email'
-          value={guest.email}
+          value={booking.email}
           onChange={(e) => setGuestEmail(e.target.value)}
           placeholder='Enter your email'
         />
@@ -39,15 +39,15 @@ export const GuestInfo = ({
         <input
           type='tel'
           id='phone'
-          value={guest.phone}
+          value={booking.phone}
           onChange={(e) => setGuestPhone(e.target.value)}
           placeholder='Enter your phone number'
         />
       </div>
       <h2>guest info</h2>
-      <p>{guest.fullname}</p>
-      <p>{guest.email}</p>
-      <p>{guest.phone}</p>
+      <p>{booking.fullname}</p>
+      <p>{booking.email}</p>
+      <p>{booking.phone}</p>
     </>
   );
 };
