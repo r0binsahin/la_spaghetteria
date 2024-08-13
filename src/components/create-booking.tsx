@@ -18,7 +18,7 @@ export const CreateBooking = () => {
   };
 
   const newBooking: Booking = {
-    date: date.toISOString().split('T')[0],
+    date: date.toLocaleDateString('sv-SE'),
     time: time,
     amount: amount,
     fullname: guestName,

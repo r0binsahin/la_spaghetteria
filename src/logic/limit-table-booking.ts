@@ -1,16 +1,14 @@
 import { Booking } from '@/types/booking';
 
 export const limitTableBooking = (bookings: Booking[], newBooking: Booking) => {
-  const newBookingDate = new Date(newBooking.date).toISOString().split('T')[0];
-
   const earlySitting = bookings.filter((booking) => {
     const bookingDate = new Date(booking.date).toISOString().split('T')[0];
-    return booking.time === '18:00' && bookingDate === newBookingDate;
+    return booking.time === '18:00' && bookingDate === newBooking.date;
   });
 
   const lateSitting = bookings.filter((booking) => {
     const bookingDate = new Date(booking.date).toISOString().split('T')[0];
-    return booking.time === '21:00' && bookingDate === newBookingDate;
+    return booking.time === '21:00' && bookingDate === newBooking.date;
   });
 
   const bookedTables18 = earlySitting.map((booking) =>
