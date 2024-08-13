@@ -1,9 +1,16 @@
 interface GuestAmountProps {
   amount: number;
   setAmount: (amount: number) => void;
+  isAmountPicked: boolean;
+  setIsAmountPicket: (isAmountPicked: boolean) => void;
 }
 
-export const GuestAmount = ({ amount, setAmount }: GuestAmountProps) => {
+export const GuestAmount = ({
+  amount,
+  setAmount,
+  isAmountPicked,
+  setIsAmountPicket,
+}: GuestAmountProps) => {
   const amountAlternatives = [
     { value: 1, label: '1 person' },
     { value: 2, label: '2 persons' },
@@ -34,6 +41,7 @@ export const GuestAmount = ({ amount, setAmount }: GuestAmountProps) => {
         ))}
       </select>
       <p>Amount: {amount}</p>
+      <button onClick={() => setIsAmountPicket(!isAmountPicked)}>next</button>
     </>
   );
 };
