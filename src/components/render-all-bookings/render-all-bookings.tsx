@@ -10,6 +10,8 @@ export const RenderAllBookings = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
+  const [bookingToDelete, setBookingToDelete] = useState<number | null>(null);
+
   const fetchBookings = async () => {
     const fetchedBookings = await getBookings();
     setBookings(fetchedBookings);
@@ -37,13 +39,24 @@ export const RenderAllBookings = () => {
     setSelectedBooking(null);
   };
 
-  const handleDelete = async (id: number) => {
-    try {
-      await deleteBooking(id);
-      fetchBookings();
-    } catch (error) {
-      console.error('Failed to delete booking:', error);
+  const handleDeleteClick = (id: number) => {
+    setBookingToDelete(id);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (bookingToDelete) {
+      try {
+        await deleteBooking(bookingToDelete);
+        fetchBookings();
+      } catch (error) {
+        console.error('Failed to delete booking:', error);
+      }
     }
+    setBookingToDelete(null);
+  };
+
+  const handleDeleteCancel = () => {
+    setBookingToDelete(null);
   };
 
   return (
@@ -70,28 +83,43 @@ export const RenderAllBookings = () => {
           </thead>
           <tbody>
             {bookings.map((booking, index) => (
-              <tr key={index}>
-                <td>{booking.date}</td>
-                <td>{booking.time}</td>
-                <td>{booking.amount}</td>
-                <td>{booking.fullname}</td>
-                <td>{booking.email}</td>
-                <td>{booking.phone}</td>
-                <td className='actions'>
-                  <button
-                    className='update-button'
-                    onClick={() => handleUpdate(booking)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className='delete-button'
-                    onClick={() => handleDelete(booking.id!)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              <>
+                <tr key={index}>
+                  <td>{booking.date}</td>
+                  <td>{booking.time}</td>
+                  <td>{booking.amount}</td>
+                  <td>{booking.fullname}</td>
+                  <td>{booking.email}</td>
+                  <td>{booking.phone}</td>
+                  <td className='actions'>
+                    <button
+                      className='update-button'
+                      onClick={() => handleUpdate(booking)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className='delete-button'
+                      onClick={() => handleDeleteClick(booking.id!)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                {bookingToDelete === booking.id && (
+                  <tr>
+                    <td colSpan={7}>
+                      <div className='delete-confirmation'>
+                        <p>Are you sure you want to delete this booking?</p>
+                        <button onClick={handleDeleteConfirm}>
+                          Yes, delete
+                        </button>
+                        <button onClick={handleDeleteCancel}>Cancel</button>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </>
             ))}
           </tbody>
         </table>
