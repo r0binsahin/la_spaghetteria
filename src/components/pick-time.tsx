@@ -38,7 +38,7 @@ export const PickTime = ({
 
   useEffect(() => {
     handleDisabled();
-  }, [bookings, newBooking]);
+  }, [bookings, newBooking, handleDisabled]);
 
   return (
     <div>
