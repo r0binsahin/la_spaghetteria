@@ -7,8 +7,6 @@ import { Booking } from '../types/booking';
 import { Guest } from '../types/guest';
 import { createNewBooking } from './actions';
 
-const bookings: Booking[] = [];
-
 export default function Home() {
   const [booking, setBooking] = useState<Booking | null>(null);
   const [date, setDate] = useState(new Date());
@@ -36,7 +34,6 @@ export default function Home() {
       guest: guest,
     };
 
-    /*     bookings.push(newBooking); */
     await createNewBooking(newBooking);
     console.log('booking created');
   };
