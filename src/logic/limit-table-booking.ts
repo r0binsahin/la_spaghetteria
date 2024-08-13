@@ -33,19 +33,6 @@ export const limitTableBooking = (bookings: Booking[], newBooking: Booking) => {
     0
   );
 
-  /*what to handle from here:  
-      if (totalTablesBooked18 >= 15) {
-      setDisable18(true);
-    }
-    if (totalTablesBooked21 >= 15) {
-      setDisable21(true);
-    }
-
-    if (totalTablesBooked18 === 14 && guestAmount > 6) setDisable18(true);
-    if (totalTablesBooked21 === 14 && guestAmount > 6) setDisable21(true);
-  
-  */
-
   return {
     totalTablesBooked18: totalTablesBooked18,
     totalTablesBooked21: totalTablesBooked21,
