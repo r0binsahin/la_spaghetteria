@@ -28,7 +28,6 @@ export const CreateBooking = () => {
 
   const createBooking = async () => {
     await createNewBooking(newBooking);
-    console.log('booking created');
   };
 
   useEffect(() => {
@@ -55,6 +54,13 @@ export const CreateBooking = () => {
             onTimeSelect={handleTimeSelect}
             newBooking={newBooking!}
           />
+          <Components.GuestInfo
+            booking={newBooking}
+            setGuestName={setGuestName}
+            setGuestEmail={setGuestEmail}
+            setGuestPhone={setGuestPhone}
+          />
+          <button onClick={createBooking}>Submit booking</button>
         </>
       )}
     </>
