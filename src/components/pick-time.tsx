@@ -73,6 +73,10 @@ export const PickTime = ({
       </div>
       <div>
         <p>Selected Time: {selectedTime}</p>
+
+        {disable18 && disable21 && (
+          <h1>We are fully booked. Please check another date</h1>
+        )}
       </div>
     </div>
   );
