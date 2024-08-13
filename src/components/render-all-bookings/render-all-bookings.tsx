@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import './render-all-bookings.css';
 import { Booking } from '@/types/booking';
-import { getBookings } from '@/app/actions';
+import { deleteBooking, getBookings } from '@/app/actions';
 
 export const RenderAllBookings = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -18,14 +18,17 @@ export const RenderAllBookings = () => {
     fetchBookings();
   }, []);
 
-  const handleUpdate = (bookingId: string) => {
+  const handleUpdate = (booking: string) => {
     // Logic for updating a booking
-    console.log('Update booking with ID:', bookingId);
   };
 
-  const handleDelete = (bookingId: string) => {
-    // Logic for deleting a booking
-    console.log('Delete booking with ID:', bookingId);
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteBooking(id);
+      fetchBookings();
+    } catch (error) {
+      console.error('Failed to delete booking:', error);
+    }
   };
 
   return (
@@ -61,7 +64,7 @@ export const RenderAllBookings = () => {
                 </button>
                 <button
                   className='delete-button'
-                  onClick={() => handleDelete(booking.email)}
+                  onClick={() => handleDelete(booking.id!)}
                 >
                   Delete
                 </button>

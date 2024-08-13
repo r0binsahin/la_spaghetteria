@@ -6,6 +6,7 @@ import {
   queryGetBookings,
 } from '@/server/queries';
 import { Booking } from '@/types/booking';
+import { revalidatePath } from 'next/cache';
 
 export const createNewBooking = async (booking: Booking) => {
   try {
@@ -27,6 +28,7 @@ export const getBookings = async (): Promise<Booking[]> => {
 export const deleteBooking = async (id: number) => {
   try {
     await queryDeleteBooking(id);
+    revalidatePath('/admin-page');
   } catch (error) {
     console.log('Error deleting booking:', error);
   }
