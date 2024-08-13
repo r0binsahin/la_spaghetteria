@@ -1,68 +1,85 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, FormEvent } from 'react';
 import * as Components from './index';
 import { Booking } from '@/types/booking';
-
 import { createNewBooking, getBookings } from '@/app/actions';
 
 export const CreateBooking = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [bookings, setBookings] = useState<Booking[]>([]);
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState('');
-  const [amount, setAmount] = useState(1);
-  const [guestName, setGuestName] = useState('');
-  const [guestEmail, setGuestEmail] = useState('');
-  const [guestPhone, setGuestPhone] = useState('');
-  const handleTimeSelect = (time: string) => {
-    setTime(time);
-  };
+  const [newBooking, setNewBooking] = useState<Booking>({
+    date: new Date().toLocaleDateString('sv-SE'),
+    time: '',
+    amount: 1,
+    fullname: '',
+    email: '',
+    phone: '',
+  });
 
-  const newBooking: Booking = {
-    date: date.toLocaleDateString('sv-SE'),
-    time: time,
-    amount: amount,
-    fullname: guestName,
-    email: guestEmail,
-    phone: guestPhone,
-  };
-
-  const createBooking = async () => {
-    await createNewBooking(newBooking);
-  };
-
-  useEffect(() => {
-    const fetchBookings = async () => {
-      const fetchedBookings = await getBookings();
-      setBookings(fetchedBookings);
-      setIsLoading(false);
-    };
-
-    fetchBookings();
+  const updateBooking = useCallback((field: keyof Booking, value: any) => {
+    setNewBooking((prev) => ({ ...prev, [field]: value }));
   }, []);
 
+  const fetchBookings = useCallback(async () => {
+    try {
+      const fetchedBookings = await getBookings();
+      setBookings(fetchedBookings);
+    } catch (error) {
+      console.error('Failed to fetch bookings:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchBookings();
+  }, [fetchBookings]);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await createNewBooking(newBooking);
+      alert('Booking created successfully!');
+      setNewBooking({
+        date: new Date().toLocaleDateString('sv-SE'),
+        time: '',
+        amount: 1,
+        fullname: '',
+        email: '',
+        phone: '',
+      });
+    } catch (error) {
+      console.error('Failed to create booking:', error);
+      alert('Failed to create booking. Please try again.');
+    }
+  };
+
+  if (isLoading) return <p>Loading...</p>;
+
   return (
-    <>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <Components.Calendar date={date} setDate={setDate} />
-          <Components.GuestAmount amount={amount} setAmount={setAmount} />
-          <Components.PickTime
-            bookings={bookings}
-            selectedTime={time}
-            onTimeSelect={handleTimeSelect}
-            newBooking={newBooking!}
-          />
-          <Components.GuestInfo
-            booking={newBooking}
-            setGuestName={setGuestName}
-            setGuestEmail={setGuestEmail}
-            setGuestPhone={setGuestPhone}
-          />
-          <button onClick={createBooking}>Submit booking</button>
-        </>
-      )}
-    </>
+    <form onSubmit={handleSubmit}>
+      <Components.Calendar
+        date={new Date(newBooking.date)}
+        setDate={(date) =>
+          updateBooking('date', date.toLocaleDateString('sv-SE'))
+        }
+      />
+      <Components.GuestAmount
+        amount={newBooking.amount}
+        setAmount={(amount) => updateBooking('amount', amount)}
+      />
+      <Components.PickTime
+        bookings={bookings}
+        selectedTime={newBooking.time}
+        onTimeSelect={(time) => updateBooking('time', time)}
+        newBooking={newBooking}
+      />
+      <Components.GuestInfo
+        booking={newBooking}
+        setGuestName={(name) => updateBooking('fullname', name)}
+        setGuestEmail={(email) => updateBooking('email', email)}
+        setGuestPhone={(phone) => updateBooking('phone', phone)}
+      />
+      <button type='submit'>Submit booking</button>
+    </form>
   );
 };
