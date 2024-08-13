@@ -1,0 +1,46 @@
+.searchBox {
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+   
+    border: 1px solid #656565;
+
+}
+
+.searchInput {
+    width: 100%;
+    font-size: 18px;
+
+padding-left: 10px;
+
+    color: #000;
+    
+    border: none;
+    outline: none;
+
+    &::placeholder {
+      color: #000;
+    }
+  }
+
+
+.searchButton {
+    width: 4.66rem;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+
+    background: #09814A;
+
+    cursor: pointer;
+
+    position: relative;
+    top: 1;
+  }

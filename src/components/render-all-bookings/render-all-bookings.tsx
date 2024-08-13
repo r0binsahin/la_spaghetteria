@@ -6,8 +6,15 @@ import { Booking } from '@/types/booking';
 import { deleteBooking, getBookings, updateBooking } from '@/app/actions';
 import { UpdateBookingForm } from '../update-booking-form/update-booking-form';
 
+import * as Components from '../index';
+
+import Fuse from 'fuse.js';
+
 export const RenderAllBookings = () => {
+  const [fuse, setFuse] = useState<Fuse<Booking> | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const [filteredBookings, setFilteredBookings] = useState<Booking[]>([]);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
   const [bookingToDelete, setBookingToDelete] = useState<number | null>(null);
@@ -15,6 +22,8 @@ export const RenderAllBookings = () => {
   const fetchBookings = async () => {
     const fetchedBookings = await getBookings();
     setBookings(fetchedBookings);
+    setFilteredBookings(fetchedBookings);
+    setFuse(new Fuse(fetchedBookings, { keys: ['fullname'] }));
   };
 
   useEffect(() => {
@@ -59,9 +68,28 @@ export const RenderAllBookings = () => {
     setBookingToDelete(null);
   };
 
+  const onSearch = (inputValue: string) => {
+    if (fuse) {
+      if (inputValue === '') {
+        setFilteredBookings(bookings);
+      } else {
+        const results = fuse.search(inputValue);
+        const searchResult = results.map((result) => result.item);
+        setFilteredBookings(searchResult);
+      }
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    onSearch(value);
+  };
+
   return (
     <div className='container'>
       <h1 className='title'>All Bookings</h1>
+      <Components.Search handleChange={handleChange} searchTerm={searchTerm} />
       {selectedBooking ? (
         <UpdateBookingForm
           booking={selectedBooking}
@@ -82,7 +110,7 @@ export const RenderAllBookings = () => {
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking, index) => (
+            {filteredBookings.map((booking, index) => (
               <>
                 <tr key={index}>
                   <td>{booking.date}</td>

@@ -8,7 +8,7 @@ export default function AdminPage() {
     <main className={styles.main}>
       <SignedOut>
         Please <SignInButton />
-        to create a new ad!
+        to to manage bookings!
       </SignedOut>
       <SignedIn>
         <UserButton />
