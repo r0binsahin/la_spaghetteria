@@ -111,10 +111,21 @@ export const RenderAllBookings = () => {
                     <td colSpan={7}>
                       <div className='delete-confirmation'>
                         <p>Are you sure you want to delete this booking?</p>
-                        <button onClick={handleDeleteConfirm}>
-                          Yes, delete
-                        </button>
-                        <button onClick={handleDeleteCancel}>Cancel</button>
+                        <div className='btnContainer'>
+                          {' '}
+                          <button
+                            className='delete-button'
+                            onClick={handleDeleteConfirm}
+                          >
+                            Yes, delete
+                          </button>
+                          <button
+                            onClick={handleDeleteCancel}
+                            className='update-button'
+                          >
+                            Cancel
+                          </button>
+                        </div>
                       </div>
                     </td>
                   </tr>
