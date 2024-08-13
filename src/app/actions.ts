@@ -4,6 +4,7 @@ import {
   queryCreateBooking,
   queryDeleteBooking,
   queryGetBookings,
+  queryUpdateBooking,
 } from '@/server/queries';
 import { Booking } from '@/types/booking';
 import { revalidatePath } from 'next/cache';
@@ -31,5 +32,15 @@ export const deleteBooking = async (id: number) => {
     revalidatePath('/admin-page');
   } catch (error) {
     console.log('Error deleting booking:', error);
+  }
+};
+
+export const updateBooking = async (updatedBooking: Booking) => {
+  try {
+    await queryUpdateBooking(updatedBooking);
+    revalidatePath('/admin-page');
+  } catch (error) {
+    console.error('Error updating booking:', error);
+    throw error;
   }
 };

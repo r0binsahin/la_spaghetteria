@@ -22,3 +22,29 @@ export const queryGetBookings = async () => {
 export const queryDeleteBooking = async (id: number) => {
   await db.delete(booking).where(eq(booking.id, id));
 };
+
+export const queryUpdateBooking = async (updatedBooking: Booking) => {
+  if (!updatedBooking.id) {
+    throw new Error('Booking ID is required for update');
+  }
+
+  try {
+    const result = await db
+      .update(booking)
+      .set({
+        date: updatedBooking.date,
+        time: updatedBooking.time,
+        amount: updatedBooking.amount,
+        fullname: updatedBooking.fullname,
+        email: updatedBooking.email,
+        phone: updatedBooking.phone,
+      })
+      .where(eq(booking.id, updatedBooking.id))
+      .returning();
+
+    return result;
+  } catch (error) {
+    console.error('Error in queryUpdateBooking:', error);
+    throw error;
+  }
+};
