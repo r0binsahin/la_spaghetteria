@@ -6,16 +6,9 @@ import '../styles/react-calender.css';
 interface CalendarProps {
   date: Date;
   setDate: (date: Date) => void;
-  isDatePicked: boolean;
-  setIsDatePicket: (isDatePicked: boolean) => void;
 }
 
-export const Calendar = ({
-  date,
-  setDate,
-  setIsDatePicket,
-  isDatePicked,
-}: CalendarProps) => {
+export const Calendar = ({ date, setDate }: CalendarProps) => {
   const now = new Date();
 
   return (
@@ -27,10 +20,8 @@ export const Calendar = ({
         //@ts-ignore
         onChange={setDate}
         value={date}
-        locale='sv-SE'
       />
       <p>Selected Date: {date.toDateString()}</p>
-      <button onClick={() => setIsDatePicket(!isDatePicked)}>next</button>
     </>
   );
 };

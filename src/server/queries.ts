@@ -7,8 +7,13 @@ export const queryCreateBooking = async (newBooking: Booking) => {
     date: newBooking.date,
     time: newBooking.time,
     amount: newBooking.amount,
-    fullname: newBooking.guest.fullname,
-    email: newBooking.guest.email,
-    phone: newBooking.guest.phone,
+    fullname: newBooking.fullname,
+    email: newBooking.email,
+    phone: newBooking.phone,
   });
+};
+
+export const queryGetBookings = async () => {
+  const bookingArray: Booking[] = await db.select().from(booking);
+  return bookingArray;
 };

@@ -4,7 +4,7 @@ import styles from './page.module.css';
 import * as Components from '../components/index';
 import { useState } from 'react';
 import { Booking } from '../types/booking';
-import { Guest } from '../types/guest';
+
 import { createNewBooking } from './actions';
 
 export default function Home() {
@@ -16,12 +16,6 @@ export default function Home() {
   const [guestEmail, setGuestEmail] = useState('');
   const [guestPhone, setGuestPhone] = useState('');
 
-  let guest: Guest = {
-    fullname: guestName,
-    email: guestEmail,
-    phone: guestPhone,
-  };
-
   const handleTimeSelect = (time: string) => {
     setTime(time);
   };
@@ -31,7 +25,9 @@ export default function Home() {
       date: date.toString(),
       time: time,
       amount: amount,
-      guest: guest,
+      fullname: guestName,
+      email: guestEmail,
+      phone: guestPhone,
     };
 
     await createNewBooking(newBooking);

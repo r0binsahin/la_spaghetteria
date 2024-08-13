@@ -1,29 +1,61 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Components from './index';
+import { Booking } from '@/types/booking';
+
+import { createNewBooking, getBookings } from '@/app/actions';
 
 export const CreateBooking = () => {
-  const [date, setDate] = useState<Date>(new Date());
+  const [isLoading, setIsLoading] = useState(true);
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState('');
   const [amount, setAmount] = useState(1);
-  const [isDatePicked, setIsDatePicket] = useState(false);
-  const [isAmountPicked, setIsAmountPicket] = useState(false);
+  const [guestName, setGuestName] = useState('');
+  const [guestEmail, setGuestEmail] = useState('');
+  const [guestPhone, setGuestPhone] = useState('');
+  const handleTimeSelect = (time: string) => {
+    setTime(time);
+  };
+
+  const newBooking: Booking = {
+    date: date.toISOString().split('T')[0],
+    time: time,
+    amount: amount,
+    fullname: guestName,
+    email: guestEmail,
+    phone: guestPhone,
+  };
+
+  const createBooking = async () => {
+    await createNewBooking(newBooking);
+    console.log('booking created');
+  };
+
+  useEffect(() => {
+    const fetchBookings = async () => {
+      const fetchedBookings = await getBookings();
+      setBookings(fetchedBookings);
+      setIsLoading(false);
+    };
+
+    fetchBookings();
+  }, []);
+
   return (
     <>
-      {!isDatePicked ? (
-        <Components.Calendar
-          date={date}
-          setDate={setDate}
-          isDatePicked={isDatePicked}
-          setIsDatePicket={setIsDatePicket}
-        />
-      ) : !isAmountPicked ? (
-        <Components.GuestAmount
-          amount={amount}
-          setAmount={setAmount}
-          isAmountPicked={isAmountPicked}
-          setIsAmountPicket={setIsAmountPicket}
-        />
+      {isLoading ? (
+        <p>Loading...</p>
       ) : (
-        'hej'
+        <>
+          <Components.Calendar date={date} setDate={setDate} />
+          <Components.GuestAmount amount={amount} setAmount={setAmount} />
+          <Components.PickTime
+            bookings={bookings}
+            selectedTime={time}
+            onTimeSelect={handleTimeSelect}
+            newBooking={newBooking!}
+          />
+        </>
       )}
     </>
   );

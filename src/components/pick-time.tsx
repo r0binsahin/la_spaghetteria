@@ -26,23 +26,27 @@ export const PickTime = ({
 
   const handleDisabled = () => {
     const totalTables = limitTableBooking(bookings, newBooking);
+    setDisable18(
+      totalTables.totalTablesBooked18 >= 15 ||
+        (totalTables.totalTablesBooked18 === 14 && newBooking.amount > 6)
+    );
+    setDisable21(
+      totalTables.totalTablesBooked21 >= 15 ||
+        (totalTables.totalTablesBooked21 === 14 && newBooking.amount > 6)
+    );
 
-    if (totalTables.totalTablesBooked18 >= 15) {
-      setDisable18(true);
-    }
-    if (totalTables.totalTablesBooked21 >= 15) {
-      setDisable21(true);
-    }
-
-    if (totalTables.totalTablesBooked18 === 14 && newBooking.amount > 6)
-      setDisable18(true);
-    if (totalTables.totalTablesBooked21 === 14 && newBooking.amount > 6)
-      setDisable21(true);
+    console.log('tables 18:', totalTables.totalTablesBooked18);
+    console.log('tables 21:', totalTables.totalTablesBooked21);
   };
 
   useEffect(() => {
+    console.log('bookings in pick-time:', bookings);
+
+    console.log('newBooking:', newBooking);
+
     handleDisabled();
-  }, []);
+    console.log('18:', disable18);
+  }, [bookings, newBooking]);
 
   return (
     <div>
