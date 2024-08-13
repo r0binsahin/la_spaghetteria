@@ -1,10 +1,6 @@
 import { Booking } from '@/types/booking';
 
 export const limitTableBooking = (bookings: Booking[], newBooking: Booking) => {
-  /*   if (!Array.isArray(bookings)) {
-    throw new Error('bookings should be an array');
-  } */
-
   const newBookingDate = new Date(newBooking.date).toISOString().split('T')[0];
 
   const earlySitting = bookings.filter((booking) => {
