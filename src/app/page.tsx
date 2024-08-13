@@ -5,6 +5,7 @@ import * as Components from '../components/index';
 import { useState } from 'react';
 import { Booking } from '../types/booking';
 import { Guest } from '../types/guest';
+import { createNewBooking } from './actions';
 
 const bookings: Booking[] = [];
 
@@ -27,7 +28,7 @@ export default function Home() {
     setTime(time);
   };
 
-  const createBooking = () => {
+  const createBooking = async () => {
     const newBooking: Booking = {
       date: date.toString(),
       time: time,
@@ -35,8 +36,9 @@ export default function Home() {
       guest: guest,
     };
 
-    bookings.push(newBooking);
-    console.log(bookings);
+    /*     bookings.push(newBooking); */
+    await createNewBooking(newBooking);
+    console.log('booking created');
   };
 
   return (
