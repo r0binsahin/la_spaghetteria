@@ -1,11 +1,19 @@
-import { RenderAllBookings } from '@/components/render-all-bookings/render-all-bookings';
 import styles from '../page.module.css';
 import * as Components from '@/components/index';
+
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 export default function AdminPage() {
   return (
     <main className={styles.main}>
-      <RenderAllBookings />
+      <SignedOut>
+        Please <SignInButton />
+        to create a new ad!
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+        <Components.RenderAllBookings />
+      </SignedIn>
     </main>
   );
 }
