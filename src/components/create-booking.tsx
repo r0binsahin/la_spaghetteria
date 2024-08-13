@@ -15,7 +15,7 @@ export const CreateBooking = () => {
     phone: '',
   });
 
-  const updateBooking = useCallback((field: keyof Booking, value: any) => {
+  const setBookingDetails = useCallback((field: keyof Booking, value: any) => {
     setNewBooking((prev) => ({ ...prev, [field]: value }));
   }, []);
 
@@ -60,24 +60,24 @@ export const CreateBooking = () => {
       <Components.Calendar
         date={new Date(newBooking.date)}
         setDate={(date) =>
-          updateBooking('date', date.toLocaleDateString('sv-SE'))
+          setBookingDetails('date', date.toLocaleDateString('sv-SE'))
         }
       />
       <Components.GuestAmount
         amount={newBooking.amount}
-        setAmount={(amount) => updateBooking('amount', amount)}
+        setAmount={(amount) => setBookingDetails('amount', amount)}
       />
       <Components.PickTime
         bookings={bookings}
         selectedTime={newBooking.time}
-        onTimeSelect={(time) => updateBooking('time', time)}
+        onTimeSelect={(time) => setBookingDetails('time', time)}
         newBooking={newBooking}
       />
       <Components.GuestInfo
         booking={newBooking}
-        setGuestName={(name) => updateBooking('fullname', name)}
-        setGuestEmail={(email) => updateBooking('email', email)}
-        setGuestPhone={(phone) => updateBooking('phone', phone)}
+        setGuestName={(name) => setBookingDetails('fullname', name)}
+        setGuestEmail={(email) => setBookingDetails('email', email)}
+        setGuestPhone={(phone) => setBookingDetails('phone', phone)}
       />
       <button type='submit'>Submit booking</button>
     </form>
