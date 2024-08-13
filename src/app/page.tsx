@@ -40,20 +40,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <Components.Calendar date={date} setDate={setDate} />
-      <Components.PickTime
-        onTimeSelect={(date) => handleTimeSelect(date)}
-        selectedTime={time}
-      />
-      <Components.GuestAmount amount={amount} setAmount={setAmount} />
-      <Components.GuestInfo
-        guest={guest}
-        setGuestName={setGuestName}
-        setGuestEmail={setGuestEmail}
-        setGuestPhone={setGuestPhone}
-      />
-
-      <button onClick={createBooking}> Create Booking</button>
+      <Components.CreateBooking />
     </main>
   );
 }
