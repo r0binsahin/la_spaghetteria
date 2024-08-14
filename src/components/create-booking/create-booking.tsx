@@ -25,7 +25,6 @@ export const CreateBooking = () => {
 
   const setBookingDetails = useCallback((field: keyof Booking, value: any) => {
     setNewBooking((prev) => ({ ...prev, [field]: value }));
-    // Clear error when field is updated
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   }, []);
 
