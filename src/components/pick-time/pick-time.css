@@ -53,6 +53,13 @@
   .pick-time-label {
     font-size: 1rem;
     color: #333;
+    display: flex;
+     gap: 20px;
+  }
+
+  .pick-time-label >p {
+    color: #dc3545;
+  text-transform: capitalize;
   }
   
   .pick-time-selected {
@@ -63,8 +70,8 @@
   }
   
   .pick-time-fully-booked {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     color: #dc3545;
     text-align: center;
-    margin-top: 1rem;
+ 
   }

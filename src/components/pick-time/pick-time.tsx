@@ -46,7 +46,7 @@ export const PickTime = ({
     <div className='pick-time-container'>
       {disable18 && disable21 ? (
         <h1 className='pick-time-fully-booked'>
-          We are fully booked. Please check another date
+          We are fully booked. Please check another date!
         </h1>
       ) : (
         <>
@@ -64,7 +64,7 @@ export const PickTime = ({
                 className='pick-time-radio'
               />
               <label htmlFor='time1800' className='pick-time-label'>
-                18:00
+                18:00 {disable18 && <p> fully booked</p>}
               </label>
             </div>
             <div className='pick-time-option'>
@@ -79,7 +79,7 @@ export const PickTime = ({
                 className='pick-time-radio'
               />
               <label htmlFor='time2100' className='pick-time-label'>
-                21:00
+                21:00 {disable21 && <p> fully booked</p>}
               </label>
             </div>
           </div>
