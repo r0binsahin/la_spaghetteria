@@ -3,7 +3,9 @@ import './slide-show.css';
 export const SlideShow = () => {
   return (
     <div className='slide-container'>
-      <h1 className='page-title'> Spaghetti </h1>
+      <div className='page-title'>
+        <h1>Benvenuti a La Spaghetteria </h1>
+      </div>
       <div className='slider'>
         <div className='slides'>
           <div className='slide'>

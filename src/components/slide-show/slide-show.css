@@ -15,13 +15,28 @@
 }
 
 .page-title {
+    width: 100%;
+    height: 200px;
     position: absolute;
-    top: 30px;
+    top: 30%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    color: #000;
+    color: #fff;
     z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(21, 20, 20, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    > h1 {
+        font-size: 86px;
+    }
 }
 
 .slider {
