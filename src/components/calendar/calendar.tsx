@@ -20,7 +20,7 @@ export const Calendar = ({ date, setDate }: CalendarProps) => {
         //@ts-ignore
         onChange={setDate}
         value={date}
-        locale='sv-SE'
+        locale='en-US'
       />
       <p>Selected Date: {date.toDateString()}</p>
     </>
