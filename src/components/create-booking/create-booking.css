@@ -89,3 +89,28 @@
       transform: rotate(720deg);
     }
   }
+
+
+
+  .back-to-start{
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #A0E7E5;
+    color: #4A4A4A; 
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid #B4F8C8; 
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 30px
+}
+
+.back-to-start:hover {
+    background-color: #FBE7C6; 
+    border-color: #FFAEBC;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}

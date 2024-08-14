@@ -7,6 +7,7 @@ import { Booking } from '@/types/booking';
 import { createNewBooking, getBookings } from '@/app/actions';
 
 import { FiCommand } from 'react-icons/fi';
+import Link from 'next/link';
 
 type ErrorState = {
   [K in keyof Booking]?: string;
@@ -14,6 +15,7 @@ type ErrorState = {
 
 export const CreateBooking = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [bookingStatus, setBookingStatus] = useState('');
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [errors, setErrors] = useState<ErrorState>({});
   const [newBooking, setNewBooking] = useState<Booking>({
@@ -87,19 +89,12 @@ export const CreateBooking = () => {
 
     try {
       await createNewBooking(newBooking);
-      alert('Booking created successfully!');
-      setNewBooking({
-        date: new Date().toLocaleDateString('sv-SE'),
-        time: '',
-        amount: 1,
-        fullname: '',
-        email: '',
-        phone: '',
-      });
+      setBookingStatus('success');
+
       setErrors({});
     } catch (error) {
       console.error('Failed to create booking:', error);
-      alert('Failed to create booking. Please try again.');
+      setBookingStatus('failure');
     }
   };
 
@@ -109,52 +104,72 @@ export const CreateBooking = () => {
         <FiCommand className='loading-icon' />
       ) : (
         <div className='create-booking-container-blur'>
-          <h1 className='create-booking-title'>Create a New Booking</h1>
-          <form onSubmit={handleSubmit} className='create-booking-form'>
-            <div className='create-booking-section'>
-              <Components.Calendar
-                date={new Date(newBooking.date)}
-                setDate={(date) =>
-                  setBookingDetails('date', date.toLocaleDateString('sv-SE'))
-                }
-              />
-              {errors.date && <p className='error'>{errors.date}</p>}
+          {bookingStatus === 'failure' ? (
+            <div className='booking-failure'>
+              <h2>Booking Creation Failed</h2>
+              <p>There was an error creating your booking. Please try again.</p>
             </div>
-
-            <div className='create-booking-section'>
-              <Components.GuestAmount
-                amount={newBooking.amount}
-                setAmount={(amount) => setBookingDetails('amount', amount)}
-              />
-              {errors.amount && <p className='error'>{errors.amount}</p>}
+          ) : bookingStatus === 'success' ? (
+            <div className='booking-confirmation'>
+              <h2>Booking Created Successfully!</h2>
+              <p>Date: {newBooking.date}</p>
+              <p>Time: {newBooking.time}</p>
+              <p>Number of Guests: {newBooking.amount}</p>
+              <p>Name: {newBooking.fullname}</p>
+              <p>Email: {newBooking.email}</p>
+              <p>Phone: {newBooking.phone}</p>
+              <Link href='/' className='back-to-start'>
+                Back to start page
+              </Link>{' '}
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className='create-booking-form'>
+              <h1 className='create-booking-title'>Create a New Booking</h1>
+              <div className='create-booking-section'>
+                <Components.Calendar
+                  date={new Date(newBooking.date)}
+                  setDate={(date) =>
+                    setBookingDetails('date', date.toLocaleDateString('sv-SE'))
+                  }
+                />
+                {errors.date && <p className='error'>{errors.date}</p>}
+              </div>
 
-            <div className='create-booking-section'>
-              <Components.PickTime
-                bookings={bookings}
-                selectedTime={newBooking.time}
-                onTimeSelect={(time) => setBookingDetails('time', time)}
-                newBooking={newBooking}
-              />
-              {errors.time && <p className='error'>{errors.time}</p>}
-            </div>
+              <div className='create-booking-section'>
+                <Components.GuestAmount
+                  amount={newBooking.amount}
+                  setAmount={(amount) => setBookingDetails('amount', amount)}
+                />
+                {errors.amount && <p className='error'>{errors.amount}</p>}
+              </div>
 
-            <div className='create-booking-section'>
-              <Components.GuestInfo
-                booking={newBooking}
-                setGuestName={(name) => setBookingDetails('fullname', name)}
-                setGuestEmail={(email) => setBookingDetails('email', email)}
-                setGuestPhone={(phone) => setBookingDetails('phone', phone)}
-              />
-              {errors.fullname && <p className='error'>{errors.fullname}</p>}
-              {errors.email && <p className='error'>{errors.email}</p>}
-              {errors.phone && <p className='error'>{errors.phone}</p>}
-            </div>
+              <div className='create-booking-section'>
+                <Components.PickTime
+                  bookings={bookings}
+                  selectedTime={newBooking.time}
+                  onTimeSelect={(time) => setBookingDetails('time', time)}
+                  newBooking={newBooking}
+                />
+                {errors.time && <p className='error'>{errors.time}</p>}
+              </div>
 
-            <button type='submit' className='submit-button'>
-              Submit Booking
-            </button>
-          </form>
+              <div className='create-booking-section'>
+                <Components.GuestInfo
+                  booking={newBooking}
+                  setGuestName={(name) => setBookingDetails('fullname', name)}
+                  setGuestEmail={(email) => setBookingDetails('email', email)}
+                  setGuestPhone={(phone) => setBookingDetails('phone', phone)}
+                />
+                {errors.fullname && <p className='error'>{errors.fullname}</p>}
+                {errors.email && <p className='error'>{errors.email}</p>}
+                {errors.phone && <p className='error'>{errors.phone}</p>}
+              </div>
+
+              <button type='submit' className='submit-button'>
+                Submit Booking
+              </button>
+            </form>
+          )}
         </div>
       )}
     </div>
