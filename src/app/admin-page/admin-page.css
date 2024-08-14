@@ -1,85 +1,110 @@
 .button-wrapper {
-   display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  margin:0;
+  margin: 0;
   background-color: #211f1f;
-  color: #fff;    
-  }
-  
-  .button-wrapper > h1 {
-    font-size: 56px;
-    margin-bottom: 30px;
-    color: #fff;    
-  }
-  .signed-out {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .sign-in-button {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #A0E7E5;
-    color: #4A4A4A; 
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 30px;
-    border: 2px solid #B4F8C8; 
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #fff;
 
-    margin-top: 30px
+  background-image: url('https://images.unsplash.com/photo-1627811884715-c004fc2dd6fb?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
+.signed-out {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
 
-  }
+.admin-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  .sign-in-button > button {
-    background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-  }
+  padding: 30px;
 
-  .sign-in-button:hover {
-    background-color: #FBE7C6; 
-    border-color: #FFAEBC;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-  }
-  
-  .signed-in {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .user-button {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f0f0f0;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .render-all-bookings {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fafafa;
+  background: rgba(39, 37, 37, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 
-    font-size: 1rem;
-  }
-  
+}
+
+.admin-wrapper > h1 {
+  font-size: 56px;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.sign-in-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #a0e7e5;
+  color: #4a4a4a;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px;
+  border: 2px solid #b4f8c8;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  margin-top: 30px;
+  width: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.sign-in-button > button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.sign-in-button:hover {
+  background-color: #fbe7c6;
+  border-color: #ffaebc;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.signed-in {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.user-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.render-all-bookings {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+
+  font-size: 1rem;
+}
