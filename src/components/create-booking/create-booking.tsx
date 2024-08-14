@@ -6,7 +6,6 @@ import * as Components from '../index';
 import { Booking } from '@/types/booking';
 import { createNewBooking, getBookings } from '@/app/actions';
 
-import { FiCommand } from 'react-icons/fi';
 import Link from 'next/link';
 
 type ErrorState = {
@@ -101,7 +100,7 @@ export const CreateBooking = () => {
   return (
     <div className='create-booking-container'>
       {isLoading ? (
-        <FiCommand className='loading-icon' />
+        <Components.LoaderSpiner />
       ) : (
         <div className='create-booking-container-blur'>
           {bookingStatus === 'failure' ? (
