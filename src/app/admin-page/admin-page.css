@@ -27,7 +27,9 @@
   justify-content: center;
   align-items: center;
 
-  padding: 30px;
+
+
+  margin-bottom: 50px;
 
   background: rgba(39, 37, 37, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -40,6 +42,7 @@
   font-size: 56px;
   margin-bottom: 30px;
   color: #fff;
+  margin-top: 30px;
 }
 
 .sign-in-button {
@@ -57,6 +60,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   margin-top: 30px;
+  margin-bottom: 30px;
   width: 120px;
 
   display: flex;
@@ -93,18 +97,19 @@
 
 .user-button {
   padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #f0f0f0;
   font-size: 1rem;
   cursor: pointer;
+
+  background: rgba(39, 37, 37, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  display: flex;
+  gap: 30px;
+
 }
 
 .render-all-bookings {
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fafafa;
-
   font-size: 1rem;
 }
