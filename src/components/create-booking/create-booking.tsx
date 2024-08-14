@@ -6,6 +6,8 @@ import * as Components from '../index';
 import { Booking } from '@/types/booking';
 import { createNewBooking, getBookings } from '@/app/actions';
 
+import { FiCommand } from 'react-icons/fi';
+
 type ErrorState = {
   [K in keyof Booking]?: string;
 };
@@ -104,9 +106,9 @@ export const CreateBooking = () => {
   return (
     <div className='create-booking-container'>
       {isLoading ? (
-        <p>Loading...</p>
+        <FiCommand className='loading-icon' />
       ) : (
-        <div>
+        <div className='create-booking-container-blur'>
           <h1 className='create-booking-title'>Create a New Booking</h1>
           <form onSubmit={handleSubmit} className='create-booking-form'>
             <div className='create-booking-section'>
