@@ -1,0 +1,58 @@
+.create-booking-container {
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 800px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-booking-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .create-booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .create-booking-section {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2rem;
+  }
+  
+  .create-booking-section:last-child {
+    border-bottom: none;
+  }
+  
+  .error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+  
+  .submit-button {
+    background-color: #4f46e5;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+  }
+  
+  .submit-button:hover {
+    opacity: 0.8;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+  }

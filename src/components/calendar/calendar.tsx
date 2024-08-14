@@ -1,7 +1,7 @@
 'use client';
 
 import ReactCalendar from 'react-calendar';
-import '../styles/react-calender.css';
+import './calender.css';
 
 interface CalendarProps {
   date: Date;

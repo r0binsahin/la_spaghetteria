@@ -1,0 +1,57 @@
+.guest-info-container {
+    margin: 2rem auto;
+    padding: 1rem;
+    max-width: 400px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .guest-info-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .guest-info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .guest-info-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .guest-info-label {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .guest-info-input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .guest-info-summary {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+  }
+  
+  .guest-info-summary-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .guest-info-summary-item {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.25rem;
+  }

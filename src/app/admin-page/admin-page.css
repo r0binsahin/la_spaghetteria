@@ -1,0 +1,85 @@
+.button-wrapper {
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin:0;
+  background-color: #211f1f;
+  color: #fff;    
+  }
+  
+  .button-wrapper > h1 {
+    font-size: 56px;
+    margin-bottom: 30px;
+    color: #fff;    
+  }
+  .signed-out {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .sign-in-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #A0E7E5;
+    color: #4A4A4A; 
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 2px solid #B4F8C8; 
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    margin-top: 30px
+
+
+
+  }
+
+  .sign-in-button > button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  }
+
+  .sign-in-button:hover {
+    background-color: #FBE7C6; 
+    border-color: #FFAEBC;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+  
+  .signed-in {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .user-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .render-all-bookings {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+
+    font-size: 1rem;
+  }
+  

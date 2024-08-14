@@ -1,7 +1,8 @@
 'use client';
 
+import './create-booking.css';
 import { useEffect, useState, useCallback, FormEvent } from 'react';
-import * as Components from './index';
+import * as Components from '../index';
 import { Booking } from '@/types/booking';
 import { createNewBooking, getBookings } from '@/app/actions';
 
@@ -104,40 +105,53 @@ export const CreateBooking = () => {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Components.Calendar
-        date={new Date(newBooking.date)}
-        setDate={(date) =>
-          setBookingDetails('date', date.toLocaleDateString('sv-SE'))
-        }
-      />
-      {errors.date && <p className='error'>{errors.date}</p>}
+    <div className='create-booking-container'>
+      <h1 className='create-booking-title'>Create a New Booking</h1>
+      <form onSubmit={handleSubmit} className='create-booking-form'>
+        <div className='create-booking-section'>
+          <Components.Calendar
+            date={new Date(newBooking.date)}
+            setDate={(date) =>
+              setBookingDetails('date', date.toLocaleDateString('sv-SE'))
+            }
+          />
+          {errors.date && <p className='error'>{errors.date}</p>}
+        </div>
 
-      <Components.GuestAmount
-        amount={newBooking.amount}
-        setAmount={(amount) => setBookingDetails('amount', amount)}
-      />
-      {errors.amount && <p className='error'>{errors.amount}</p>}
+        <div className='create-booking-section'>
+          <Components.GuestAmount
+            amount={newBooking.amount}
+            setAmount={(amount) => setBookingDetails('amount', amount)}
+          />
+          {errors.amount && <p className='error'>{errors.amount}</p>}
+        </div>
 
-      <Components.PickTime
-        bookings={bookings}
-        selectedTime={newBooking.time}
-        onTimeSelect={(time) => setBookingDetails('time', time)}
-        newBooking={newBooking}
-      />
-      {errors.time && <p className='error'>{errors.time}</p>}
+        <div className='create-booking-section'>
+          <Components.PickTime
+            bookings={bookings}
+            selectedTime={newBooking.time}
+            onTimeSelect={(time) => setBookingDetails('time', time)}
+            newBooking={newBooking}
+          />
+          {errors.time && <p className='error'>{errors.time}</p>}
+        </div>
 
-      <Components.GuestInfo
-        booking={newBooking}
-        setGuestName={(name) => setBookingDetails('fullname', name)}
-        setGuestEmail={(email) => setBookingDetails('email', email)}
-        setGuestPhone={(phone) => setBookingDetails('phone', phone)}
-      />
-      {errors.fullname && <p className='error'>{errors.fullname}</p>}
-      {errors.email && <p className='error'>{errors.email}</p>}
-      {errors.phone && <p className='error'>{errors.phone}</p>}
+        <div className='create-booking-section'>
+          <Components.GuestInfo
+            booking={newBooking}
+            setGuestName={(name) => setBookingDetails('fullname', name)}
+            setGuestEmail={(email) => setBookingDetails('email', email)}
+            setGuestPhone={(phone) => setBookingDetails('phone', phone)}
+          />
+          {errors.fullname && <p className='error'>{errors.fullname}</p>}
+          {errors.email && <p className='error'>{errors.email}</p>}
+          {errors.phone && <p className='error'>{errors.phone}</p>}
+        </div>
 
-      <button type='submit'>Submit booking</button>
-    </form>
+        <button type='submit' className='submit-button'>
+          Submit Booking
+        </button>
+      </form>
+    </div>
   );
 };
