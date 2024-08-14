@@ -2,15 +2,12 @@ import './search.css';
 
 import { FiSearch } from 'react-icons/fi';
 
-interface ISearchProps {
+interface SearchProps {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   searchTerm: string;
 }
 
-export const Search = ({
-  searchTerm,
-  handleChange,
-}: ISearchProps): JSX.Element => {
+export const Search = ({ searchTerm, handleChange }: SearchProps) => {
   return (
     <div className='searchBox'>
       <input
