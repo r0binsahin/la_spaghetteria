@@ -84,8 +84,10 @@
     flex-direction: row;
     width: 400%;
     height: 100%;
-    animation: slide 40s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-}
+    animation: slide 50s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+} 
+
+
 
 .slide {
     width: 100vw;
@@ -102,10 +104,13 @@
     object-fit: cover;
 }
 
-@keyframes slide {
+ @keyframes slide {
     0%, 20% { transform: translateX(0); }
     25%, 45% { transform: translateX(-25%); }
     50%, 70% { transform: translateX(-50%); }
     75%, 95% { transform: translateX(-75%); }
-    100% { transform: translateX(0); }
-}
+    100% { transform: translateX(-90); }
+} 
+
+
+
