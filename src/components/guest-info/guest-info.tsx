@@ -57,12 +57,6 @@ export const GuestInfo = ({
           />
         </div>
       </div>
-      <div className='guest-info-summary'>
-        <h3 className='guest-info-summary-title'>Guest Information Summary</h3>
-        <p className='guest-info-summary-item'>Name: {booking.fullname}</p>
-        <p className='guest-info-summary-item'>Email: {booking.email}</p>
-        <p className='guest-info-summary-item'>Phone: {booking.phone}</p>
-      </div>
     </div>
   );
 };

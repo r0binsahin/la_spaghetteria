@@ -1,24 +1,30 @@
 .create-booking-container {
-    margin: 2rem auto;
-    padding: 2rem;
-    max-width: 800px;
-    border-radius: 8px;
+
+    min-width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-height: 100vh;
     overflow: scroll;
+    min-height: 500px;
 
-    /* From https://css.glass */
-background: rgba(255, 255, 255, 0.2);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px);
-border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   }
   
   .create-booking-title {
     font-size: 2rem;
-    color: #333;
+    color: #4f46e5;
     margin-bottom: 2rem;
     text-align: center;
   }

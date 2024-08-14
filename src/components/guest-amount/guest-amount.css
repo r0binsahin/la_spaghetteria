@@ -1,15 +1,19 @@
 .guest-amount-container {
     margin: 2rem auto;
     padding: 1rem;
-    max-width: 400px;
-    border-radius: 8px;
-    background-color: #ffffff;
+    background-color: #FFAEBC;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    max-width: 400px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   .guest-amount-title {
     font-size: 1.5rem;
-    color: #333;
+    color: #4f46e5;
     margin-bottom: 1rem;
     text-align: center;
   }
@@ -28,7 +32,6 @@
   .guest-amount-select {
     padding: 0.5rem;
     border: 1px solid #ddd;
-    border-radius: 4px;
     font-size: 1rem;
   }
   

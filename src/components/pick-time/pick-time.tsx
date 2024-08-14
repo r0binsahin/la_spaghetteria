@@ -83,7 +83,6 @@ export const PickTime = ({
               </label>
             </div>
           </div>
-          <p className='pick-time-selected'>Selected Time: {selectedTime}</p>
         </>
       )}
     </div>

@@ -40,7 +40,6 @@ export const GuestAmount = ({ amount, setAmount }: GuestAmountProps) => {
             </option>
           ))}
         </select>
-        <p className='guest-amount-display'>Amount: {amount}</p>
       </div>
     </div>
   );
