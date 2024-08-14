@@ -1,0 +1,24 @@
+nav {
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 1000;
+}
+
+.topnav{
+display: flex;
+  align-items: center;
+
+
+}
+
+.logo-box {
+    width: 75px
+}
+
+.title{
+    font-size: 2rem;
+    text-decoration: none;
+    font-weight: 800;
+    color: #000;
+}

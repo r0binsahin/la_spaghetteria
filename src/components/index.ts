@@ -7,3 +7,4 @@ export { RenderAllBookings } from './render-all-bookings/render-all-bookings';
 export { Search } from './search/search';
 export { SlideShow } from './slide-show/slide-show';
 export { LoaderSpiner } from './loader-spiner/loader-spiner';
+export { Navbar } from './navbar/navbar';

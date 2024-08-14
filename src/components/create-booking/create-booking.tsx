@@ -1,5 +1,4 @@
 'use client';
-
 import './create-booking.css';
 import { useEffect, useState, useCallback, FormEvent } from 'react';
 import * as Components from '../index';
