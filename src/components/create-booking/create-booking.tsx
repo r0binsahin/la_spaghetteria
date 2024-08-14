@@ -111,13 +111,25 @@ export const CreateBooking = () => {
             </div>
           ) : bookingStatus === 'success' ? (
             <div className='booking-confirmation'>
-              <h2>Booking Created Successfully!</h2>
-              <p>Date: {newBooking.date}</p>
-              <p>Time: {newBooking.time}</p>
-              <p>Number of Guests: {newBooking.amount}</p>
-              <p>Name: {newBooking.fullname}</p>
-              <p>Email: {newBooking.email}</p>
-              <p>Phone: {newBooking.phone}</p>
+              <h2>Booking Created Successfully! 🎉</h2>
+              <p>
+                <strong>Date:</strong> {newBooking.date}
+              </p>
+              <p>
+                <strong>Time:</strong> {newBooking.time}
+              </p>
+              <p>
+                <strong>Number of Guests:</strong> {newBooking.amount}
+              </p>
+              <p>
+                <strong>Name: </strong> {newBooking.fullname}
+              </p>
+              <p>
+                <strong>Email: </strong> {newBooking.email}
+              </p>
+              <p>
+                <strong>Phone: </strong> {newBooking.phone}
+              </p>
               <Link href='/' className='back-to-start'>
                 Back to start page
               </Link>{' '}

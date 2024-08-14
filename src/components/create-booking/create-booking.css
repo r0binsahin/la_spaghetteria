@@ -16,10 +16,10 @@
   .create-booking-container-blur{
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(1, 1, 1, 0.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 50px;
 
@@ -32,7 +32,7 @@
   }
   .create-booking-title {
     font-size: 2rem;
-    color: #4f46e5;
+    color: #000;
     margin-bottom: 2rem;
     text-align: center;
   }
@@ -113,4 +113,25 @@
     transform: translateY(-1px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
     cursor: pointer;
+}
+
+
+
+.booking-confirmation > p{
+  padding: 10px;
+  border-bottom: 1px solid #fff;
+  background-color: #FFAEBC;
+}
+
+.booking-confirmation > h2 {
+  font-size: 28px;
+  padding: 15px;
+  color: #000;
+  border: 1px solid #fff;
+  margin-bottom: 15px;
+  background-color: #FFAEBC;
+}
+
+.booking-confirmation > p:last-child {
+  border-bottom: none;
 }
