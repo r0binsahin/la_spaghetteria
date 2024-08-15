@@ -101,16 +101,9 @@ export const RenderAllBookings = () => {
     onSearch(value);
   };
 
-  const handleTimeFilter18 = () => {
+  const handleTimeFilter = (time: string) => {
     const timeFilteredBookings = originalBookings.filter(
-      (booking) => booking.time === '18:00'
-    );
-    setBookings(timeFilteredBookings);
-  };
-
-  const handleTimeFilter21 = () => {
-    const timeFilteredBookings = originalBookings.filter(
-      (booking) => booking.time === '21:00'
+      (booking) => booking.time === time
     );
     setBookings(timeFilteredBookings);
   };
@@ -138,8 +131,8 @@ export const RenderAllBookings = () => {
                 <button onClick={() => setBookings(originalBookings)}>
                   today
                 </button>
-                <button onClick={handleTimeFilter18}>18:00</button>
-                <button onClick={handleTimeFilter21}>21:00</button>
+                <button onClick={() => handleTimeFilter('18:00')}>18:00</button>
+                <button onClick={() => handleTimeFilter('21:00')}>21:00</button>
               </div>
               <table className='table'>
                 <thead>
