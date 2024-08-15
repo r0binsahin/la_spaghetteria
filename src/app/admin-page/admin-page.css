@@ -1,6 +1,4 @@
 .button-wrapper {
-
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +12,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  justify-content: center;
 }
 
 .signed-out {
@@ -27,10 +27,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-
-
-  margin-top: 15%;
 
   background: rgba(39, 37, 37, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
