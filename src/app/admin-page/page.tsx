@@ -8,7 +8,7 @@ export default function AdminPage() {
     <main className='button-wrapper'>
       <div className='admin-wrapper'>
         <SignedOut>
-          <h1>La Spaghetteria Admin Page</h1>
+          <h1> Admin Page</h1>
           <div className='signed-out'>Please sign in to manage bookings!</div>
           <span className='sign-in-button'>
             <SignInButton />
@@ -19,7 +19,7 @@ export default function AdminPage() {
         <div className='signed-in'>
           <span className='user-button'>
             <UserButton />
-            <h1>La Spaghetteria Admin Page</h1>
+            <h1>Admin Page</h1>
           </span>
           <div className='render-all-bookings'>
             <Components.RenderAllBookings />

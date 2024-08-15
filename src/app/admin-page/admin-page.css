@@ -1,4 +1,6 @@
 .button-wrapper {
+
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +30,7 @@
 
 
 
-  margin-bottom: 50px;
+  margin-top: 15%;
 
   background: rgba(39, 37, 37, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
