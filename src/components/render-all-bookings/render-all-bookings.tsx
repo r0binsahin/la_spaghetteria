@@ -197,12 +197,12 @@ export const RenderAllBookings = () => {
                     {bookings.map((booking, index) => (
                       <>
                         <tr key={index}>
-                          <td>{booking.date}</td>
-                          <td>{booking.time}</td>
-                          <td>{booking.amount}</td>
-                          <td>{booking.fullname}</td>
-                          <td>{booking.email}</td>
-                          <td>{booking.phone}</td>
+                          <td data-label='Date'>{booking.date}</td>
+                          <td data-label='Time'>{booking.time}</td>
+                          <td data-label='Amount'>{booking.amount}</td>
+                          <td data-label='Full Name'>{booking.fullname}</td>
+                          <td data-label='Email'>{booking.email}</td>
+                          <td data-label='Phone'>{booking.phone}</td>
                           <td className='actions'>
                             <button
                               className='update-button'
