@@ -37,6 +37,7 @@ export const RenderAllBookings = () => {
     totalGuests21: 0,
     totalBookings: 0,
     totalGuests: 0,
+    totalTablesBooked: 0,
   });
 
   const fetchBookingsForDate = async (date: string) => {

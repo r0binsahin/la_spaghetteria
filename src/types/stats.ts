@@ -5,4 +5,5 @@ export type Stats = {
   totalGuests21: number;
   totalBookings: number;
   totalGuests: number;
+  totalTablesBooked: number;
 };

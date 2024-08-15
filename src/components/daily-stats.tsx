@@ -14,6 +14,7 @@ export const DailyStatistics = ({ stats, selectedDate }: DailyStatsProps) => {
       <p>Total guests at 21:00: {stats.totalGuests21}</p>
       <p>Total bookings: {stats.totalBookings}</p>
       <p>Total guests: {stats.totalGuests}</p>
+      <p>Total tables booked: {stats.totalTablesBooked}</p>
     </div>
   );
 };
