@@ -16,6 +16,10 @@ export const Navbar = () => {
           La Spaghetteria
         </Link>
       </div>
+
+      <Link href='/admin-page' className='admin-page-link'>
+        Admin page
+      </Link>
     </nav>
   );
 };

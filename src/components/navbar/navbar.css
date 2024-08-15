@@ -1,8 +1,14 @@
 nav {
+    width: 100%;
     position: absolute;
     top:0;
     left: 0;
     z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding: 15px;
 }
 
 .topnav{
@@ -21,4 +27,12 @@ display: flex;
     text-decoration: none;
     font-weight: 800;
     color: #000;
+}
+
+
+.admin-page-link{
+    padding: 15px;
+    text-decoration: none;
+    font-size: 28px;
+    color: #fff;
 }

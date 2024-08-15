@@ -6,8 +6,6 @@ import { Booking } from '@/types/booking';
 import { deleteBooking, getBookings, updateBooking } from '@/app/actions';
 import { UpdateBookingForm } from '../update-booking-form/update-booking-form';
 
-import { FiCommand } from 'react-icons/fi';
-
 import * as Components from '../index';
 
 import Fuse from 'fuse.js';
@@ -25,8 +23,12 @@ export const RenderAllBookings = () => {
   const fetchBookings = async () => {
     try {
       const fetchedBookings = await getBookings();
-      setBookings(fetchedBookings);
-      setFilteredBookings(fetchedBookings);
+      const todaysBookings = fetchedBookings.filter(
+        (booking: Booking) =>
+          booking.date === new Date().toLocaleDateString('sv-SE')
+      );
+      setBookings(todaysBookings);
+      setFilteredBookings(todaysBookings);
       setFuse(new Fuse(fetchedBookings, { keys: ['fullname'] }));
     } catch (error) {
       console.error('Failed to fetch bookings:', error);
@@ -80,11 +82,11 @@ export const RenderAllBookings = () => {
   const onSearch = (inputValue: string) => {
     if (fuse) {
       if (inputValue === '') {
-        setFilteredBookings(bookings);
+        setBookings(bookings);
       } else {
         const results = fuse.search(inputValue);
         const searchResult = results.map((result) => result.item);
-        setFilteredBookings(searchResult);
+        setBookings(searchResult);
       }
     }
   };
@@ -101,7 +103,6 @@ export const RenderAllBookings = () => {
         <Components.LoaderSpiner />
       ) : (
         <div className='container'>
-          <h1 className='title'>All Bookings</h1>
           <Components.Search
             handleChange={handleChange}
             searchTerm={searchTerm}
@@ -113,71 +114,76 @@ export const RenderAllBookings = () => {
               onCancel={handleUpdateCancel}
             />
           ) : (
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Amount</th>
-                  <th>Full Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredBookings.map((booking, index) => (
-                  <>
-                    <tr key={index}>
-                      <td>{booking.date}</td>
-                      <td>{booking.time}</td>
-                      <td>{booking.amount}</td>
-                      <td>{booking.fullname}</td>
-                      <td>{booking.email}</td>
-                      <td>{booking.phone}</td>
-                      <td className='actions'>
-                        <button
-                          className='update-button'
-                          onClick={() => handleUpdate(booking)}
-                        >
-                          Update
-                        </button>
-                        <button
-                          className='delete-button'
-                          onClick={() => handleDeleteClick(booking.id!)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                    {bookingToDelete === booking.id && (
-                      <tr>
-                        <td colSpan={7}>
-                          <div className='delete-confirmation'>
-                            <p>Are you sure you want to delete this booking?</p>
-                            <div className='btnContainer'>
-                              {' '}
-                              <button
-                                className='delete-button'
-                                onClick={handleDeleteConfirm}
-                              >
-                                Yes, delete
-                              </button>
-                              <button
-                                onClick={handleDeleteCancel}
-                                className='update-button'
-                              >
-                                Cancel
-                              </button>
-                            </div>
-                          </div>
+            <>
+              <h1 className='title'>Todays Bookings</h1>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Amount</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bookings.map((booking, index) => (
+                    <>
+                      <tr key={index}>
+                        <td>{booking.date}</td>
+                        <td>{booking.time}</td>
+                        <td>{booking.amount}</td>
+                        <td>{booking.fullname}</td>
+                        <td>{booking.email}</td>
+                        <td>{booking.phone}</td>
+                        <td className='actions'>
+                          <button
+                            className='update-button'
+                            onClick={() => handleUpdate(booking)}
+                          >
+                            Update
+                          </button>
+                          <button
+                            className='delete-button'
+                            onClick={() => handleDeleteClick(booking.id!)}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
-                    )}
-                  </>
-                ))}
-              </tbody>
-            </table>
+                      {bookingToDelete === booking.id && (
+                        <tr>
+                          <td colSpan={7}>
+                            <div className='delete-confirmation'>
+                              <p>
+                                Are you sure you want to delete this booking?
+                              </p>
+                              <div className='btnContainer'>
+                                {' '}
+                                <button
+                                  className='delete-button'
+                                  onClick={handleDeleteConfirm}
+                                >
+                                  Yes, delete
+                                </button>
+                                <button
+                                  onClick={handleDeleteCancel}
+                                  className='update-button'
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </>
+                  ))}
+                </tbody>
+              </table>
+            </>
           )}
         </div>
       )}
