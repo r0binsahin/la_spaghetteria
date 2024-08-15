@@ -50,30 +50,30 @@ export const CreateBooking = () => {
     let isValid = true;
 
     if (!newBooking.date) {
-      newErrors.date = 'Please select a date';
+      newErrors.date = 'Please select a date!';
       isValid = false;
     }
     if (!newBooking.time) {
-      newErrors.time = 'Please select a time';
+      newErrors.time = 'Please select a time!';
       isValid = false;
     }
     if (!newBooking.fullname.trim()) {
-      newErrors.fullname = 'Please enter your full name';
+      newErrors.fullname = 'Please enter your full name!';
       isValid = false;
     }
     if (!newBooking.email.trim()) {
-      newErrors.email = 'Please enter your email';
+      newErrors.email = 'Please enter your email!';
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(newBooking.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = 'Please enter a valid email address!';
       isValid = false;
     }
     if (!newBooking.phone.trim()) {
-      newErrors.phone = 'Please enter your phone number';
+      newErrors.phone = 'Please enter your phone number!';
       isValid = false;
     }
     if (newBooking.amount < 1) {
-      newErrors.amount = 'Number of guests must be at least 1';
+      newErrors.amount = 'Number of guests must be at least 1!';
       isValid = false;
     }
 
@@ -134,7 +134,7 @@ export const CreateBooking = () => {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className='create-booking-form'>
-              <h1 className='create-booking-title'>Create a New Booking</h1>
+              <h1 className='create-booking-title'>Book a table</h1>
               <div className='create-booking-section'>
                 <Components.Calendar
                   date={new Date(newBooking.date)}
@@ -170,9 +170,15 @@ export const CreateBooking = () => {
                   setGuestEmail={(email) => setBookingDetails('email', email)}
                   setGuestPhone={(phone) => setBookingDetails('phone', phone)}
                 />
-                {errors.fullname && <p className='error'>{errors.fullname}</p>}
-                {errors.email && <p className='error'>{errors.email}</p>}
-                {errors.phone && <p className='error'>{errors.phone}</p>}
+                {(errors.fullname || errors.email || errors.phone) && (
+                  <div className='error-box'>
+                    {errors.fullname && (
+                      <p className='error'>{errors.fullname}</p>
+                    )}
+                    {errors.email && <p className='error'>{errors.email}</p>}
+                    {errors.phone && <p className='error'>{errors.phone}</p>}
+                  </div>
+                )}
               </div>
 
               <button type='submit' className='submit-button'>
