@@ -1,3 +1,5 @@
+import './delete-buttons.css';
+
 interface DeleteButtonsProps {
   handleDeleteConfirm: () => void;
   handleDeleteCancel: () => void;
@@ -17,7 +19,7 @@ export const DeleteButtons = ({
             <button className='delete-button' onClick={handleDeleteConfirm}>
               Yes, delete
             </button>
-            <button onClick={handleDeleteCancel} className='update-button'>
+            <button onClick={handleDeleteCancel} className='cancel-button'>
               Cancel
             </button>
           </div>

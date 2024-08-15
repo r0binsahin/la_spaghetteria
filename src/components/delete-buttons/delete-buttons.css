@@ -1,0 +1,47 @@
+.cancel-button, .delete-button {
+    border: none;
+    padding: 0.5rem 1rem;
+  
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.875rem;
+  }
+  
+  .cancel-button {
+    background-color: #007bff;
+    transition: background-color 0.3s;
+  }
+  
+  .cancel-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  
+  .delete-confirmation {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:  center;
+    align-items: center;
+    gap: 10px;
+  
+  }
+
+  .btnContainer {
+    display: flex;
+    gap: 30px;
+
+    > button {
+      width: 125px;
+  }
+
+}
