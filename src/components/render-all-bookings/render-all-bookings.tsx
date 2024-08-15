@@ -13,7 +13,6 @@ import { deleteBooking, getBookings, updateBooking } from '@/app/actions';
 import Fuse from 'fuse.js';
 import { Stats } from '@/types/stats';
 import { calculateDailyStats } from '@/logic/calculateDailyStats';
-import { DailyStatistics } from '../daily-stats';
 
 export const RenderAllBookings = () => {
   const now = new Date().toLocaleDateString('sv-SE');
@@ -174,7 +173,10 @@ export const RenderAllBookings = () => {
                 <button onClick={() => handleTimeFilter('21:00')}>21:00</button>
               </div>
 
-              <DailyStatistics stats={dayStats} selectedDate={selectedDate} />
+              <Components.DailyStats
+                stats={dayStats}
+                selectedDate={selectedDate}
+              />
 
               {bookings.length === 0 ? (
                 <h1>No booking to show</h1>
