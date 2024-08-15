@@ -9,3 +9,5 @@ export { SlideShow } from './slide-show/slide-show';
 export { LoaderSpiner } from './loader-spiner/loader-spiner';
 export { Navbar } from './navbar/navbar';
 export { UpdateBookingForm } from './update-booking-form/update-booking-form';
+
+export { DeleteButtons } from './delete-buttons/delete-buttons';
