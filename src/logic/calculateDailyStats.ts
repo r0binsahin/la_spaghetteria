@@ -14,22 +14,23 @@ export const calculateDailyStats = (bookings: Booking[]) => {
   };
 
   bookings.forEach((booking) => {
-    const getBookedTables = limitTableBooking(bookings, booking);
-
     if (booking.time === '18:00') {
       stats.totalGuests18 += booking.amount;
     } else if (booking.time === '21:00') {
       stats.totalGuests21 += booking.amount;
     }
-
-    stats.totalTables21 = getBookedTables.totalTablesBooked21;
-    stats.totalTables18 = getBookedTables.totalTablesBooked18;
-
     stats.totalBookings++;
     stats.totalGuests += booking.amount;
-    stats.totalTablesBooked =
-      getBookedTables.totalTablesBooked18 + getBookedTables.totalTablesBooked21;
   });
+
+  const { totalTablesBooked18, totalTablesBooked21 } = limitTableBooking(
+    bookings,
+    bookings[0]
+  );
+
+  stats.totalTables21 = totalTablesBooked21;
+  stats.totalTables18 = totalTablesBooked18;
+  stats.totalTablesBooked = totalTablesBooked18 + totalTablesBooked21;
 
   return stats;
 };
