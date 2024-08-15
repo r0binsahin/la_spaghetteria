@@ -17,7 +17,7 @@ export const RenderAllBookings = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [originalBookings, setOriginalBookings] = useState<Booking[]>([]);
 
-  const [todaysBookings, setTodaysBookings] = useState<Booking[]>([]);
+  /*   const [todaysBookings, setTodaysBookings] = useState<Booking[]>([]); */
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
   const [bookingToDelete, setBookingToDelete] = useState<number | null>(null);
@@ -29,6 +29,7 @@ export const RenderAllBookings = () => {
         (booking: Booking) =>
           booking.date === new Date().toLocaleDateString('sv-SE')
       );
+
       setOriginalBookings(todaysBookings);
       setBookings(todaysBookings);
       setFuse(new Fuse(fetchedBookings, { keys: ['fullname'] }));
@@ -41,7 +42,7 @@ export const RenderAllBookings = () => {
 
   useEffect(() => {
     fetchBookings();
-    setBookings(todaysBookings);
+    /*     setBookings(todaysBookings); */
   }, []);
 
   const handleUpdate = (booking: Booking) => {
