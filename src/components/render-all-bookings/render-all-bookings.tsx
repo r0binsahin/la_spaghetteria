@@ -22,25 +22,32 @@ export const RenderAllBookings = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [originalBookings, setOriginalBookings] = useState<Booking[]>([]);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toLocaleDateString('sv-SE')
+  );
 
   const [bookingToDelete, setBookingToDelete] = useState<number | null>(null);
 
-  const fetchBookings = async () => {
+  const fetchBookingsForDate = async (date: string) => {
+    setIsLoading(true);
     try {
       const fetchedBookings = await getBookings();
-      const todaysBookings = fetchedBookings.filter(
-        (booking: Booking) =>
-          booking.date === new Date().toLocaleDateString('sv-SE')
+      const filteredBookings = fetchedBookings.filter(
+        (booking: Booking) => booking.date === date
       );
-
-      setOriginalBookings(todaysBookings);
-      setBookings(todaysBookings);
-      setFuse(new Fuse(fetchedBookings, { keys: ['fullname'] }));
+      setOriginalBookings(filteredBookings);
+      setBookings(filteredBookings);
+      setFuse(new Fuse(filteredBookings, { keys: ['fullname'] }));
     } catch (error) {
       console.error('Failed to fetch bookings:', error);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const fetchBookings = async () => {
+    const currentDate = new Date().toLocaleDateString('sv-SE');
+    fetchBookingsForDate(currentDate);
   };
 
   useEffect(() => {
@@ -88,7 +95,7 @@ export const RenderAllBookings = () => {
   const onSearch = (inputValue: string) => {
     if (fuse) {
       if (inputValue === '') {
-        setBookings(originalBookings);
+        setBookings(bookings);
       } else {
         const results = fuse.search(inputValue);
         const searchResult = results.map((result) => result.item);
@@ -105,14 +112,15 @@ export const RenderAllBookings = () => {
 
   const handleTimeFilter = (time: string) => {
     const timeFilteredBookings = originalBookings.filter(
-      (booking) => booking.time === time
+      (booking) => booking.time === time && booking.date === selectedDate
     );
     setBookings(timeFilteredBookings);
   };
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setOriginalBookings((prev) => ({ ...prev, [name]: value }));
+    const { value } = e.target;
+    setSelectedDate(value);
+    fetchBookingsForDate(value);
   };
   return (
     <div className='data-wrapper'>
@@ -140,7 +148,7 @@ export const RenderAllBookings = () => {
                     type='date'
                     id='date'
                     name='date'
-                    value={new Date().toLocaleDateString('sv-SE')}
+                    value={selectedDate}
                     onChange={handleDateChange}
                   />
                 </div>
