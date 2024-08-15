@@ -15,7 +15,9 @@ export const RenderAllBookings = () => {
   const [fuse, setFuse] = useState<Fuse<Booking> | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [bookings, setBookings] = useState<Booking[]>([]);
-  const [filteredBookings, setFilteredBookings] = useState<Booking[]>([]);
+  const [originalBookings, setOriginalBookings] = useState<Booking[]>([]);
+
+  const [todaysBookings, setTodaysBookings] = useState<Booking[]>([]);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
   const [bookingToDelete, setBookingToDelete] = useState<number | null>(null);
@@ -27,8 +29,8 @@ export const RenderAllBookings = () => {
         (booking: Booking) =>
           booking.date === new Date().toLocaleDateString('sv-SE')
       );
+      setOriginalBookings(todaysBookings);
       setBookings(todaysBookings);
-      setFilteredBookings(todaysBookings);
       setFuse(new Fuse(fetchedBookings, { keys: ['fullname'] }));
     } catch (error) {
       console.error('Failed to fetch bookings:', error);
@@ -39,6 +41,7 @@ export const RenderAllBookings = () => {
 
   useEffect(() => {
     fetchBookings();
+    setBookings(todaysBookings);
   }, []);
 
   const handleUpdate = (booking: Booking) => {
@@ -82,7 +85,7 @@ export const RenderAllBookings = () => {
   const onSearch = (inputValue: string) => {
     if (fuse) {
       if (inputValue === '') {
-        setBookings(bookings);
+        setBookings(originalBookings);
       } else {
         const results = fuse.search(inputValue);
         const searchResult = results.map((result) => result.item);
@@ -95,6 +98,20 @@ export const RenderAllBookings = () => {
     const value = event.target.value;
     setSearchTerm(value);
     onSearch(value);
+  };
+
+  const handleTimeFilter18 = () => {
+    const timeFilteredBookings = originalBookings.filter(
+      (booking) => booking.time === '18:00'
+    );
+    setBookings(timeFilteredBookings);
+  };
+
+  const handleTimeFilter21 = () => {
+    const timeFilteredBookings = originalBookings.filter(
+      (booking) => booking.time === '21:00'
+    );
+    setBookings(timeFilteredBookings);
   };
 
   return (
@@ -116,6 +133,13 @@ export const RenderAllBookings = () => {
           ) : (
             <>
               <h1 className='title'>Todays Bookings</h1>
+              <div className='time-btns'>
+                <button onClick={() => setBookings(originalBookings)}>
+                  today
+                </button>
+                <button onClick={handleTimeFilter18}>18:00</button>
+                <button onClick={handleTimeFilter21}>21:00</button>
+              </div>
               <table className='table'>
                 <thead>
                   <tr>
