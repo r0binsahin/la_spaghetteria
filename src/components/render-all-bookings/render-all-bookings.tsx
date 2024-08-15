@@ -144,10 +144,6 @@ export const RenderAllBookings = () => {
         <Components.LoaderSpiner />
       ) : (
         <div className='container'>
-          <Components.Search
-            handleChange={handleChange}
-            searchTerm={searchTerm}
-          />
           {selectedBooking ? (
             <Components.UpdateBookingForm
               booking={selectedBooking}
@@ -156,6 +152,10 @@ export const RenderAllBookings = () => {
             />
           ) : (
             <>
+              <Components.Search
+                handleChange={handleChange}
+                searchTerm={searchTerm}
+              />
               <h1 className='title'>
                 Bookings for {selectedDate === now ? 'today' : selectedDate}
               </h1>
