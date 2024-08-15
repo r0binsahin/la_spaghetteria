@@ -153,15 +153,17 @@ backdrop-filter: blur(10px);
 
 
 @media screen and (max-width: 768px){
-  .create-booking-container{
-/* width: 100% !important; */
-  }
   .create-booking-container-blur{
     position: absolute;
     top: 0;
     padding: 120px 0 30px 0;
+  }
 
-
+  .booking-confirmation{
+    padding: 20px;
+  }
+  .booking-confirmation h2 {
+    text-align: center;
   }
   
 }
