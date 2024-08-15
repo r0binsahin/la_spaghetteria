@@ -37,3 +37,15 @@ nav {
   font-size: 28px;
   color: #fbe7c6;
 }
+
+
+.admin-user-login{
+  font-size: 28px;
+  color: #fbe7c6;
+ margin: 15px;
+ cursor: pointer;
+}
+
+.login-btn-wrapper{
+  margin: 15px
+}
