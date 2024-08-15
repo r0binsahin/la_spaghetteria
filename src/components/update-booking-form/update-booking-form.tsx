@@ -9,11 +9,11 @@ interface UpdateBookingFormProps {
   onCancel: () => void;
 }
 
-export const UpdateBookingForm: React.FC<UpdateBookingFormProps> = ({
+export const UpdateBookingForm = ({
   booking,
   onUpdate,
   onCancel,
-}) => {
+}: UpdateBookingFormProps) => {
   const [updatedBooking, setUpdatedBooking] = useState<Booking>(booking);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -15,7 +15,6 @@ export const DeleteButtons = ({
         <div className='delete-confirmation'>
           <p>Are you sure you want to delete this booking?</p>
           <div className='btnContainer'>
-            {' '}
             <button className='delete-button' onClick={handleDeleteConfirm}>
               Yes, delete
             </button>

@@ -11,6 +11,9 @@ import { Booking } from '@/types/booking';
 import { deleteBooking, getBookings, updateBooking } from '@/app/actions';
 
 import Fuse from 'fuse.js';
+import { Stats } from '@/types/stats';
+import { calculateDailyStats } from '@/logic/calculateDailyStats';
+import { DailyStatistics } from '../daily-stats';
 
 export const RenderAllBookings = () => {
   const now = new Date().toLocaleDateString('sv-SE');
@@ -27,6 +30,15 @@ export const RenderAllBookings = () => {
 
   const [bookingToDelete, setBookingToDelete] = useState<number | null>(null);
 
+  const [dayStats, setDayStats] = useState<Stats>({
+    totalTables18: 0,
+    totalGuests18: 0,
+    totalTables21: 0,
+    totalGuests21: 0,
+    totalBookings: 0,
+    totalGuests: 0,
+  });
+
   const fetchBookingsForDate = async (date: string) => {
     setIsLoading(true);
     try {
@@ -37,6 +49,9 @@ export const RenderAllBookings = () => {
       setOriginalBookings(filteredBookings);
       setBookings(filteredBookings);
       setFuse(new Fuse(filteredBookings, { keys: ['fullname'] }));
+
+      const stats = calculateDailyStats(filteredBookings);
+      setDayStats(stats);
     } catch (error) {
       console.error('Failed to fetch bookings:', error);
     } finally {
@@ -114,6 +129,8 @@ export const RenderAllBookings = () => {
       (booking) => booking.time === time && booking.date === selectedDate
     );
     setBookings(timeFilteredBookings);
+    /*     const stats = calculateDailyStats(timeFilteredBookings);
+    setDayStats(stats); */
   };
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,6 +138,7 @@ export const RenderAllBookings = () => {
     setSelectedDate(value);
     fetchBookingsForDate(value);
   };
+
   return (
     <div className='data-wrapper'>
       {isLoading ? (
@@ -156,6 +174,8 @@ export const RenderAllBookings = () => {
                 <button onClick={() => handleTimeFilter('18:00')}>18:00</button>
                 <button onClick={() => handleTimeFilter('21:00')}>21:00</button>
               </div>
+
+              <DailyStatistics stats={dayStats} selectedDate={selectedDate} />
 
               {bookings.length === 0 ? (
                 <h1>No booking to show</h1>
