@@ -49,7 +49,7 @@ export const RenderAllBookings = () => {
       );
       setOriginalBookings(filteredBookings);
       setBookings(filteredBookings);
-      setFuse(new Fuse(filteredBookings, { keys: ['fullname'] }));
+      setFuse(new Fuse(fetchedBookings, { keys: ['fullname'] }));
 
       const stats = calculateDailyStats(filteredBookings);
       setDayStats(stats);
@@ -130,8 +130,6 @@ export const RenderAllBookings = () => {
       (booking) => booking.time === time && booking.date === selectedDate
     );
     setBookings(timeFilteredBookings);
-    /*     const stats = calculateDailyStats(timeFilteredBookings);
-    setDayStats(stats); */
   };
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
