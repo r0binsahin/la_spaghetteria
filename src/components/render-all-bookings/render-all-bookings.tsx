@@ -1,23 +1,26 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import './render-all-bookings.css';
-import { Booking } from '@/types/booking';
-import { deleteBooking, getBookings, updateBooking } from '@/app/actions';
-import { UpdateBookingForm } from '../update-booking-form/update-booking-form';
 
 import * as Components from '../index';
+
+import { useEffect, useState } from 'react';
+
+import { Booking } from '@/types/booking';
+
+import { deleteBooking, getBookings, updateBooking } from '@/app/actions';
 
 import Fuse from 'fuse.js';
 
 export const RenderAllBookings = () => {
   const [isLoading, setIsLoading] = useState(true);
+
   const [fuse, setFuse] = useState<Fuse<Booking> | null>(null);
+
   const [searchTerm, setSearchTerm] = useState('');
+
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [originalBookings, setOriginalBookings] = useState<Booking[]>([]);
-
-  /*   const [todaysBookings, setTodaysBookings] = useState<Booking[]>([]); */
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
   const [bookingToDelete, setBookingToDelete] = useState<number | null>(null);
@@ -42,7 +45,6 @@ export const RenderAllBookings = () => {
 
   useEffect(() => {
     fetchBookings();
-    /*     setBookings(todaysBookings); */
   }, []);
 
   const handleUpdate = (booking: Booking) => {
@@ -119,7 +121,7 @@ export const RenderAllBookings = () => {
             searchTerm={searchTerm}
           />
           {selectedBooking ? (
-            <UpdateBookingForm
+            <Components.UpdateBookingForm
               booking={selectedBooking}
               onUpdate={handleUpdateSubmit}
               onCancel={handleUpdateCancel}
