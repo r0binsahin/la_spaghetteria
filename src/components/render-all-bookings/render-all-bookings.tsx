@@ -110,7 +110,7 @@ export const RenderAllBookings = () => {
   const onSearch = (inputValue: string) => {
     if (fuse) {
       if (inputValue === '') {
-        setBookings(bookings);
+        setBookings(originalBookings);
       } else {
         const results = fuse.search(inputValue);
         const searchResult = results.map((result) => result.item);
