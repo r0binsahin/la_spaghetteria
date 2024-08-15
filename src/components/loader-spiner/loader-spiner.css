@@ -2,7 +2,7 @@
     color: #fbe7c6;;
     font-size: 15rem;
     animation: animate 3s infinite;
-    margin-top: 20%
+ /*     margin-top: 20%  */
   }
   
   @keyframes animate {

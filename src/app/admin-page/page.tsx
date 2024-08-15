@@ -12,13 +12,12 @@ export default function AdminPage() {
           <div className='signed-out'>Please sign in to manage bookings!</div>
           <span className='sign-in-button'>
             <SignInButton />
-          </span>{' '}
+          </span>
         </SignedOut>
       </div>
       <SignedIn>
         <div className='signed-in'>
           <span className='user-button'>
-            <UserButton />
             <h1>Admin Page</h1>
           </span>
           <div className='render-all-bookings'>
