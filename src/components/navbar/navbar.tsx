@@ -9,6 +9,7 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 import { Logo } from '@/assets/logo';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
 const dancing = Dancing_Script({ subsets: ['latin'] });
 
 export const Navbar = () => {
