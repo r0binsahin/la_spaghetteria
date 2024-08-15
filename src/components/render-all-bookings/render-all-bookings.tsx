@@ -110,6 +110,10 @@ export const RenderAllBookings = () => {
     setBookings(timeFilteredBookings);
   };
 
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setOriginalBookings((prev) => ({ ...prev, [name]: value }));
+  };
   return (
     <div className='data-wrapper'>
       {isLoading ? (
@@ -130,9 +134,16 @@ export const RenderAllBookings = () => {
             <>
               <h1 className='title'>Todays Bookings</h1>
               <div className='time-btns'>
-                <button onClick={() => setBookings(originalBookings)}>
-                  today
-                </button>
+                <div>
+                  <label htmlFor='date'>Date:</label>
+                  <input
+                    type='date'
+                    id='date'
+                    name='date'
+                    value={new Date().toLocaleDateString('sv-SE')}
+                    onChange={handleDateChange}
+                  />
+                </div>
                 <button onClick={() => handleTimeFilter('18:00')}>18:00</button>
                 <button onClick={() => handleTimeFilter('21:00')}>21:00</button>
               </div>
