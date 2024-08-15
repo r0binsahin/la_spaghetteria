@@ -1,12 +1,19 @@
 import Link from 'next/link';
 import './slide-show.css';
 
+import { Dancing_Script } from 'next/font/google';
+
+const dancing = Dancing_Script({ subsets: ['latin'] });
+
 export const SlideShow = () => {
   return (
     <div className='slide-container'>
       <div className='page-title'>
         <div className='welcome'>
-          <h1>Benvenuti a La Spaghetteria </h1>
+          <h1>
+            Benvenuti a{' '}
+            <span className={dancing.className}>La Spaghetteria </span>
+          </h1>
         </div>
 
         <Link href={'/book-table'} className='book-table-btn'>
