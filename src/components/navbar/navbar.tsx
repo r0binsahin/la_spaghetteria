@@ -1,5 +1,6 @@
 import './navbar.css';
 import { Dancing_Script } from 'next/font/google';
+import { FaCircleUser } from 'react-icons/fa6';
 
 import { Logo } from '@/assets/logo';
 import Link from 'next/link';
@@ -18,7 +19,7 @@ export const Navbar = () => {
       </div>
 
       <Link href='/admin-page' className='admin-page-link'>
-        Admin page
+        <FaCircleUser />
       </Link>
     </nav>
   );
