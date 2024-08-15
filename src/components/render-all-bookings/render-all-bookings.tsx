@@ -13,6 +13,7 @@ import { deleteBooking, getBookings, updateBooking } from '@/app/actions';
 import Fuse from 'fuse.js';
 
 export const RenderAllBookings = () => {
+  const now = new Date().toLocaleDateString('sv-SE');
   const [isLoading, setIsLoading] = useState(true);
 
   const [fuse, setFuse] = useState<Fuse<Booking> | null>(null);
@@ -22,9 +23,7 @@ export const RenderAllBookings = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [originalBookings, setOriginalBookings] = useState<Booking[]>([]);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
-  const [selectedDate, setSelectedDate] = useState(
-    new Date().toLocaleDateString('sv-SE')
-  );
+  const [selectedDate, setSelectedDate] = useState(now);
 
   const [bookingToDelete, setBookingToDelete] = useState<number | null>(null);
 
@@ -46,7 +45,7 @@ export const RenderAllBookings = () => {
   };
 
   const fetchBookings = async () => {
-    const currentDate = new Date().toLocaleDateString('sv-SE');
+    const currentDate = now;
     fetchBookingsForDate(currentDate);
   };
 
@@ -140,7 +139,9 @@ export const RenderAllBookings = () => {
             />
           ) : (
             <>
-              <h1 className='title'>Todays Bookings</h1>
+              <h1 className='title'>
+                Bookings for {selectedDate === now ? 'today' : selectedDate}
+              </h1>
               <div className='time-btns'>
                 <div>
                   <label htmlFor='date'>Date:</label>
@@ -155,73 +156,78 @@ export const RenderAllBookings = () => {
                 <button onClick={() => handleTimeFilter('18:00')}>18:00</button>
                 <button onClick={() => handleTimeFilter('21:00')}>21:00</button>
               </div>
-              <table className='table'>
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Amount</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {bookings.map((booking, index) => (
-                    <>
-                      <tr key={index}>
-                        <td>{booking.date}</td>
-                        <td>{booking.time}</td>
-                        <td>{booking.amount}</td>
-                        <td>{booking.fullname}</td>
-                        <td>{booking.email}</td>
-                        <td>{booking.phone}</td>
-                        <td className='actions'>
-                          <button
-                            className='update-button'
-                            onClick={() => handleUpdate(booking)}
-                          >
-                            Update
-                          </button>
-                          <button
-                            className='delete-button'
-                            onClick={() => handleDeleteClick(booking.id!)}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                      {bookingToDelete === booking.id && (
-                        <tr>
-                          <td colSpan={7}>
-                            <div className='delete-confirmation'>
-                              <p>
-                                Are you sure you want to delete this booking?
-                              </p>
-                              <div className='btnContainer'>
-                                {' '}
-                                <button
-                                  className='delete-button'
-                                  onClick={handleDeleteConfirm}
-                                >
-                                  Yes, delete
-                                </button>
-                                <button
-                                  onClick={handleDeleteCancel}
-                                  className='update-button'
-                                >
-                                  Cancel
-                                </button>
-                              </div>
-                            </div>
+
+              {bookings.length === 0 ? (
+                <h1>No booking to show</h1>
+              ) : (
+                <table className='table'>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Amount</th>
+                      <th>Full Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bookings.map((booking, index) => (
+                      <>
+                        <tr key={index}>
+                          <td>{booking.date}</td>
+                          <td>{booking.time}</td>
+                          <td>{booking.amount}</td>
+                          <td>{booking.fullname}</td>
+                          <td>{booking.email}</td>
+                          <td>{booking.phone}</td>
+                          <td className='actions'>
+                            <button
+                              className='update-button'
+                              onClick={() => handleUpdate(booking)}
+                            >
+                              Update
+                            </button>
+                            <button
+                              className='delete-button'
+                              onClick={() => handleDeleteClick(booking.id!)}
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>
-                      )}
-                    </>
-                  ))}
-                </tbody>
-              </table>
+                        {bookingToDelete === booking.id && (
+                          <tr>
+                            <td colSpan={7}>
+                              <div className='delete-confirmation'>
+                                <p>
+                                  Are you sure you want to delete this booking?
+                                </p>
+                                <div className='btnContainer'>
+                                  {' '}
+                                  <button
+                                    className='delete-button'
+                                    onClick={handleDeleteConfirm}
+                                  >
+                                    Yes, delete
+                                  </button>
+                                  <button
+                                    onClick={handleDeleteCancel}
+                                    className='update-button'
+                                  >
+                                    Cancel
+                                  </button>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </>
           )}
         </div>
