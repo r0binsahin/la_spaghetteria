@@ -160,7 +160,9 @@ export const RenderAllBookings = () => {
               </h1>
               <div className='time-btns'>
                 <div>
-                  <label htmlFor='date'>Date:</label>
+                  <label htmlFor='date' className='date'>
+                    Date:
+                  </label>
                   <input
                     type='date'
                     id='date'
