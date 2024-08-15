@@ -98,10 +98,7 @@
   font-size: 1rem;
   cursor: pointer;
 
-/*   background: rgba(39, 37, 37, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px); */
+
 
   display: flex;
   gap: 30px;
@@ -113,4 +110,19 @@
 
 .render-all-bookings {
   font-size: 1rem;
+}
+
+
+@media screen and (max-width: 768px){
+  .admin-wrapper h1 {
+    font-size: 38px;
+  }
+
+  .signed-out{
+  padding: 30px;
+  text-align: center;
+  }
+
+
+  
 }

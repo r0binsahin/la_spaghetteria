@@ -1,7 +1,7 @@
 import './admin-page.css';
 import * as Components from '@/components/index';
 
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
 export default function AdminPage() {
   return (
