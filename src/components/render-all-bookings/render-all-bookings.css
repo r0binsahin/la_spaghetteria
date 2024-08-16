@@ -4,6 +4,7 @@
   align-items: center;
   color: #000;
   width: 100%;
+  min-height: 100vh;
 }
 
 .container {
@@ -13,7 +14,7 @@
   max-width: 1200px;
   background-color: #fafafa; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-height: 100vh;
+  min-height: 100vh;
   overflow-y: auto;
 }
 
@@ -201,7 +202,6 @@
 
   .actions {
     flex-direction: column;
-
   }
 
 

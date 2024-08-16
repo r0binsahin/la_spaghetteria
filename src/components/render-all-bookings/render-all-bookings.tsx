@@ -48,7 +48,13 @@ export const RenderAllBookings = () => {
       );
       setOriginalBookings(filteredBookings);
       setBookings(filteredBookings);
-      setFuse(new Fuse(fetchedBookings, { keys: ['fullname'] }));
+      setFuse(
+        new Fuse(fetchedBookings, {
+          keys: ['fullname'],
+          includeScore: true,
+          threshold: 0.6,
+        })
+      );
 
       const stats = calculateDailyStats(filteredBookings);
       setDayStats(stats);
