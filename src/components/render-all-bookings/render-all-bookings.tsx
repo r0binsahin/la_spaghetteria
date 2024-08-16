@@ -51,8 +51,6 @@ export const RenderAllBookings = () => {
       setFuse(
         new Fuse(fetchedBookings, {
           keys: ['fullname'],
-          includeScore: true,
-          threshold: 0.6,
         })
       );
 
