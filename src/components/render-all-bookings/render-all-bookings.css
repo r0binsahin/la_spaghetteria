@@ -71,6 +71,12 @@
 }
 
 
+.actions {
+  display: flex;
+ flex-direction: row;
+
+}
+
 @media screen and (max-width: 768px) {
   .table, .table tbody, .table tr, .table td {
     display: block;
@@ -108,14 +114,14 @@
 
   .actions {
     display: flex;
-    justify-content: flex-end;
+   justify-content: flex-end; 
     gap: 0.5rem;
 
   }
 
-  .actions::before {
+ .actions::before {
     content: none 
-  } 
+  }  
 }
 
 
